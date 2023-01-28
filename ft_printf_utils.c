@@ -6,7 +6,7 @@
 /*   By: sbenouat <sbenouat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 02:29:48 by sbenouat          #+#    #+#             */
-/*   Updated: 2023/01/20 02:40:46 by sbenouat         ###   ########.fr       */
+/*   Updated: 2023/01/28 09:27:55 by sbenouat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,10 @@ int	ft_putstr(char *str)
 
 	i = 0;
 	cpt = 0;
-	if (str[i] == '\0')
+	if (str == NULL)
 	{
-		write(1, "null", 4);
-		return (4);
+		write(1, "(null)", 6);
+		return (6);
 	}
 	while (str[i] != '\0')
 	{
@@ -70,7 +70,7 @@ int	ft_putnbr_unsigned(unsigned int n)
 	return (cpt);
 }
 
-int	ft_hexa(char c, int n)
+int	ft_hexa(char c, unsigned int n)
 {
 	unsigned int	cpt;
 

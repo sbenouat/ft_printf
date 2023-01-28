@@ -1,26 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sbenouat <sbenouat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/20 02:41:04 by sbenouat          #+#    #+#             */
-/*   Updated: 2023/01/28 09:28:38 by sbenouat         ###   ########.fr       */
+/*   Created: 2022/12/19 16:48:56 by sbenouat          #+#    #+#             */
+/*   Updated: 2022/12/23 09:41:06 by sbenouat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#include "libft.h"
 
-# include <stdarg.h>
-# include <unistd.h>
+char	*ft_strrchr(const char *s, int c)
+{
+	size_t	i;
 
-int	ft_printf(char const *s, ...);
-int	ft_putchar(int c);
-int	ft_putstr(char *str);
-int	ft_putnbr(int n);
-int	ft_putnbr_unsigned(unsigned int n);
-int	ft_hexa(char c, unsigned int n);
-
-#endif
+	i = ft_strlen(s) + 1;
+	while (i--)
+	{
+		if (s[i] == (const char)c)
+			return ((char *)(s + i));
+	}
+	return (NULL);
+}

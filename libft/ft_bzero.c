@@ -1,26 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_bzero.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sbenouat <sbenouat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/20 02:41:04 by sbenouat          #+#    #+#             */
-/*   Updated: 2023/01/28 09:28:38 by sbenouat         ###   ########.fr       */
+/*   Created: 2022/11/22 23:48:31 by sbenouat          #+#    #+#             */
+/*   Updated: 2022/12/20 09:08:27 by sbenouat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#include "libft.h"
 
-# include <stdarg.h>
-# include <unistd.h>
+void	ft_bzero(void *s, size_t n)
+{
+	unsigned char	*inter;
 
-int	ft_printf(char const *s, ...);
-int	ft_putchar(int c);
-int	ft_putstr(char *str);
-int	ft_putnbr(int n);
-int	ft_putnbr_unsigned(unsigned int n);
-int	ft_hexa(char c, unsigned int n);
-
-#endif
+	inter = s;
+	while (n--)
+	{
+		*inter++ = 0;
+	}
+}

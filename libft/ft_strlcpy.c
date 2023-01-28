@@ -1,26 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sbenouat <sbenouat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/20 02:41:04 by sbenouat          #+#    #+#             */
-/*   Updated: 2023/01/28 09:28:38 by sbenouat         ###   ########.fr       */
+/*   Created: 2022/11/08 17:00:08 by sbenouat          #+#    #+#             */
+/*   Updated: 2022/12/19 10:35:52 by sbenouat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#include "libft.h"
 
-# include <stdarg.h>
-# include <unistd.h>
+size_t	ft_strlcpy(char *dst, const char *src, size_t size)
+{
+	size_t	lensrc;
 
-int	ft_printf(char const *s, ...);
-int	ft_putchar(int c);
-int	ft_putstr(char *str);
-int	ft_putnbr(int n);
-int	ft_putnbr_unsigned(unsigned int n);
-int	ft_hexa(char c, unsigned int n);
-
-#endif
+	lensrc = ft_strlen(src);
+	if (lensrc + 1 < size)
+		ft_memcpy(dst, src, lensrc + 1);
+	else if (size != 0)
+	{
+		ft_memcpy(dst, src, size - 1);
+		dst[size - 1] = '\0';
+	}
+	return (lensrc);
+}

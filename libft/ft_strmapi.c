@@ -1,26 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sbenouat <sbenouat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/20 02:41:04 by sbenouat          #+#    #+#             */
-/*   Updated: 2023/01/28 09:28:38 by sbenouat         ###   ########.fr       */
+/*   Created: 2022/12/19 12:31:22 by sbenouat          #+#    #+#             */
+/*   Updated: 2022/12/21 09:22:48 by sbenouat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#include "libft.h"
 
-# include <stdarg.h>
-# include <unistd.h>
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, const char))
+{
+	char	*rslt;
+	size_t	i;
 
-int	ft_printf(char const *s, ...);
-int	ft_putchar(int c);
-int	ft_putstr(char *str);
-int	ft_putnbr(int n);
-int	ft_putnbr_unsigned(unsigned int n);
-int	ft_hexa(char c, unsigned int n);
-
-#endif
+	if (!f || !s)
+		return (NULL);
+	rslt = (char *)malloc((ft_strlen(s) + 1) * sizeof(char));
+	if (!rslt)
+		return (NULL);
+	i = 0;
+	while (i < ft_strlen(s))
+	{
+		rslt[i] = (*f)(i, s[i]);
+		i++;
+	}
+	rslt[i] = '\0';
+	return (rslt);
+}

@@ -6,7 +6,7 @@
 /*   By: sbenouat <sbenouat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 02:16:32 by sbenouat          #+#    #+#             */
-/*   Updated: 2023/01/20 02:29:15 by sbenouat         ###   ########.fr       */
+/*   Updated: 2023/01/28 09:28:19 by sbenouat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,10 @@ static int	ft_point(unsigned long int n)
 
 static int	ft_args(char c, va_list args)
 {
+	unsigned long int	p;
+
 	if (c == '%')
-		ft_putchar('%');
+		return (ft_putchar('%'));
 	else if (c == 'c')
 		return (ft_putchar(va_arg(args, int)));
 	else if (c == 's')
@@ -36,11 +38,14 @@ static int	ft_args(char c, va_list args)
 	else if (c == 'u')
 		return (ft_putnbr_unsigned(va_arg(args, unsigned int)));
 	else if (c == 'x' || c == 'X')
-		return (ft_hexa(c, va_arg(args, int)));
+		return (ft_hexa(c, va_arg(args, unsigned int)));
 	else if (c == 'p')
 	{
+		p = va_arg(args, unsigned long int);
+		if (p == 0)
+			return (ft_putstr("(nil)"));
 		ft_putstr("0x");
-		return (ft_point(va_arg(args, unsigned long int)));
+		return (ft_point(p) + 2);
 	}
 	else
 		return (-1);

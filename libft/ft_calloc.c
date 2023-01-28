@@ -1,26 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sbenouat <sbenouat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/20 02:41:04 by sbenouat          #+#    #+#             */
-/*   Updated: 2023/01/28 09:28:38 by sbenouat         ###   ########.fr       */
+/*   Created: 2022/11/22 23:52:42 by sbenouat          #+#    #+#             */
+/*   Updated: 2022/12/23 09:54:33 by sbenouat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#include "libft.h"
 
-# include <stdarg.h>
-# include <unistd.h>
+void	*ft_calloc(size_t count, size_t size)
+{
+	size_t	len;
+	void	*rslt;
 
-int	ft_printf(char const *s, ...);
-int	ft_putchar(int c);
-int	ft_putstr(char *str);
-int	ft_putnbr(int n);
-int	ft_putnbr_unsigned(unsigned int n);
-int	ft_hexa(char c, unsigned int n);
-
-#endif
+	if (!size || !count || (count > SIZE_MAX / size))
+		len = 1;
+	else
+		len = count * size;
+	if (size >= SIZE_MAX || count >= SIZE_MAX || size * count >= SIZE_MAX)
+		return (NULL);
+	rslt = (void *)malloc(len);
+	if (!rslt)
+		return (NULL);
+	ft_bzero(rslt, len);
+	return (rslt);
+}
